@@ -14,21 +14,21 @@
 <body>
     <div class="container">
         <div class="card">
-            <h2>Verifica della password</h2>
+            <h1>Verifica della password</h1>
 
-            <input type="password" placeholder="Inserisci la tua password" name="password" id="password">
+            <input type="password" placeholder="Inserisci la tua password" name="password" id="password" oninput="passwordControl()">
 
-            <ul>
-                <li>
+            <ul id="list">
+                <li id="lengthControl">
                     <i class="fa-solid fa-x"></i> Almeno 9 caratteri
                 </li>
-                <li>
+                <li id="upperControl">
                     <i class="fa-solid fa-x"></i> Almeno 1 maiuscola 
                 </li>
-                <li>
+                <li id="numberControl">
                     <i class="fa-solid fa-x"></i> Almeno 1 numero
                 </li>
-                <li>
+                <li id="specialControl">
                     <i class="fa-solid fa-x"></i> Almeno 1 carattere speciale
                 </li>
             </ul>
