@@ -1,3 +1,8 @@
+let checkLength = false;
+let checkUpper = false;
+let checkNumber = false;
+let checkSpecial = false;
+
 // LengthValidation
 function lengthValidation() {
     let password = document.getElementById('password').value;
@@ -8,6 +13,8 @@ function lengthValidation() {
     if (passwordLength >= 9) {
         lengthControl.style.color = 'green';
         icon.className = 'fa-solid fa-check';
+
+        checkLength = true;
     }
     else if (password.length == 0) {
         lengthControl.style.color = 'black';
@@ -16,8 +23,12 @@ function lengthValidation() {
     else {
         lengthControl.style.color = 'red';
         icon.className = 'fa-solid fa-x';
+
+        checkLength = false;
     }
 }
+// Ricordare: className sostituisce tutte le classi, mentre classList.add/toggle le aggiunge senza rimuovere quelle già presenti 
+
 
 // UpperValidation
 function upperValidation() {
@@ -29,6 +40,8 @@ function upperValidation() {
     if (pattern.test(password) == true) {
         upperControl.style.color = 'green';
         icon.className = 'fa-solid fa-check';
+
+        checkUpper = true;
     }
     else if (password.length == 0) {
         upperControl.style.color = 'black';
@@ -37,6 +50,8 @@ function upperValidation() {
     else {
         upperControl.style.color = 'red';
         icon.className = 'fa-solid fa-x';
+
+        checkUpper = false;
     }
 
 }
@@ -51,6 +66,8 @@ function numberValidation() {
     if (pattern.test(password) == true) {
         numberControl.style.color = 'green';
         icon.className = 'fa-solid fa-check';
+
+        checkNumber = true;
     }
     else if (password.length == 0) {
         numberControl.style.color = 'black';
@@ -59,6 +76,8 @@ function numberValidation() {
     else {
         numberControl.style.color = 'red';
         icon.className = 'fa-solid fa-x';
+
+        checkNumber = false;
     }
 
 }
@@ -73,6 +92,8 @@ function specialValidation() {
     if (pattern.test(password) == true) {
         specialControl.style.color = 'green';
         icon.className = 'fa-solid fa-check';
+
+        checkSpecial = true;
     }
     else if (password.length == 0) {
         specialControl.style.color = 'black';
@@ -81,6 +102,8 @@ function specialValidation() {
     else {
         specialControl.style.color = 'red';
         icon.className = 'fa-solid fa-x';
+
+        checkSpecial = false;
     }
 }
 
@@ -115,8 +138,46 @@ function passwordControl() {
     upperValidation();
     numberValidation();
     specialValidation();
+    modifyProgressBar();
 }
 
 
+function modifyProgressBar() {
+    let newWidth = 0;
+    let progressBar = document.getElementById('progress');
 
-// Ricordare: className sostituisce tutte le classi, mentre classList.add/toggle le aggiunge senza rimuovere quelle già presenti 
+    if (document.getElementById('password').value.length === 0) {
+        checkLength = false;
+        checkUpper = false;
+        checkNumber = false;
+        checkSpecial = false;
+    }
+  
+    if (checkLength) {
+      newWidth += 25;
+    }
+    if (checkUpper) {
+      newWidth += 25;
+    }
+    if (checkNumber) {
+      newWidth += 25;
+    }
+    if (checkSpecial) {
+      newWidth += 25;
+    }
+
+    progressBar.style.width = newWidth + '%';
+
+    if(progressBar.style.width === '25%'){
+        progressBar.style.background = 'red';
+    }
+    else if(progressBar.style.width === '50%'){
+        progressBar.style.background = 'yellow'
+    }
+    else if(progressBar.style.width === '75%'){
+        progressBar.style.background = 'orange';
+    }
+    else if(progressBar.style.width === '100%'){
+        progressBar.style.background = 'green';
+    }
+  }
